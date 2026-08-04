@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NORI CMS Login</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<style>
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#fbf6f1;
+    font-family:Arial,sans-serif;
+}
+
+
+.card{
+
+    width:350px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.1);
+
+}
+
+
+h1{
+    text-align:center;
+    color:#7a3742;
+    letter-spacing:5px;
+}
+
+
+input{
+
+width:100%;
+padding:15px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ddd;
+
+}
+
+
+
+button{
+
+width:100%;
+padding:15px;
+border:none;
+border-radius:30px;
+background:#7a3742;
+color:white;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+
+#error{
+
+color:red;
+text-align:center;
+margin-top:15px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+
+<h1>NORI</h1>
+
+<p style="text-align:center">
+Admin Portal
+</p>
+
+
+<input id="email" placeholder="Email">
+
+
+<input 
+id="password"
+type="password"
+placeholder="Password">
+
+
+<button onclick="login()">
+Login
+</button>
+
+
+<p id="error"></p>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+async function login(){
+
+
+const email =
+document.getElementById("email").value;
+
+
+const password =
+document.getElementById("password").value;
+
+
+
+const {data,error}=await db.auth.signInWithPassword({
+
+email,
+password
+
+});
+
+
+
+if(error){
+
+document.getElementById("error").innerText =
+error.message;
+
+return;
+
+}
+
+
+window.location.href="dashboard.html";
+
+
+}
+
+
+
+</script>
+
+
+</body>
+</html>
